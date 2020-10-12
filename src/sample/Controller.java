@@ -8,8 +8,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
 import javafx.event.ActionEvent;
@@ -45,6 +47,16 @@ public class Controller {
     private Button Rectangle;
     @FXML
     private Button Brush;
+    
+    @FXML
+    private MenuItem newItem;
+    
+    @FXML
+    private MenuItem openItem;
+    @FXML
+    private MenuItem saveItem;
+    @FXML
+    private MenuItem saveAsItem;
     
     Command tool;
 
@@ -94,12 +106,34 @@ public class Controller {
         brushTool.setColorPicker(colorPicker);
         
     }
+    @FXML
+    public void newItemInvoked(ActionEvent event)
+    {
+    	System.out.println("newItem click");
+    }
+    @FXML
+    public void openItemInvoked(ActionEvent event)
+    {
+
+    }
+    @FXML
+    public void saveItemInvoked(ActionEvent event)
+    {
+    	 onSave();
+    }
+    @FXML
+    public void saveAsItemInvoked(ActionEvent event)
+    {
+    	
+    }
 
     public void onSave() {
+    	System.out.println("Save S?");
         try {
             Image snapshot = canvas.snapshot(null, null);
-
+            
             ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File("paint.png"));
+            System.out.println("Save S");
         } catch (Exception e) {
             System.out.println("Failed to save image: " + e);
         }

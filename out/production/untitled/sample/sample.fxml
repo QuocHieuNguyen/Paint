@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.input.*?>
 <?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
@@ -27,9 +28,12 @@
             <MenuBar>
                <menus>
                   <Menu text="File">
-               <!--<MenuItem text="Save" onAction="#onSave" />
-               <MenuItem text="Exit" onAction="#onExit" /> -->
-            </Menu>
+                     <items>
+                        <MenuItem fx:id="newItem" mnemonicParsing="false" onAction="#newItemInvoked" text="New" />
+                        <MenuItem fx:id="openItem" mnemonicParsing="false" onAction="#openItemInvoked" text="Open" />
+                        <MenuItem fx:id="saveItem" mnemonicParsing="false" onAction="#saveItemInvoked" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As" />
+                     </items></Menu>
                   <Menu text="Edit" />
                </menus>
             </MenuBar>
@@ -43,7 +47,7 @@
             </ToolBar>
             <ToolBar prefHeight="40.0" prefWidth="600.0">
                <items>
-                  <Button fx:id="Eraser" mnemonicParsing="false" onAction="#eraserButtonInvoked" prefHeight="0.0" prefWidth="52.0">
+                  <Button fx:id="Eraser" mnemonicParsing="false" onAction="#eraserButtonInvoked" prefHeight="26.0" prefWidth="26.0">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -52,7 +56,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="fillButton" mnemonicParsing="false" onAction="#fillButtonInvoked" prefHeight="0.0" prefWidth="52.0">
+                  <Button fx:id="fillButton" mnemonicParsing="false" onAction="#fillButtonInvoked" prefHeight="26.0" prefWidth="26.0">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -61,7 +65,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="Pencil" mnemonicParsing="false" onAction="#pencilButtonInvoked" prefHeight="0.0" prefWidth="52.0">
+                  <Button fx:id="Pencil" mnemonicParsing="false" onAction="#pencilButtonInvoked" prefHeight="26.0" prefWidth="26.0">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -70,7 +74,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="Rectangle" mnemonicParsing="false" onAction="#rectButtonInvoked" prefHeight="0.0" prefWidth="52.0">
+                  <Button fx:id="Rectangle" mnemonicParsing="false" onAction="#rectButtonInvoked" prefHeight="26.0" prefWidth="26.0">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -79,7 +83,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="Brush" layoutX="178.0" layoutY="12.0" mnemonicParsing="false" onAction="#brushButtonInvoked" prefHeight="0.0" prefWidth="52.0">
+                  <Button fx:id="Brush" layoutX="178.0" layoutY="12.0" mnemonicParsing="false" onAction="#brushButtonInvoked" prefHeight="26.0" prefWidth="26.0">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
