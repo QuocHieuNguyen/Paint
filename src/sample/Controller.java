@@ -71,6 +71,7 @@ public class Controller {
     @FXML
     public void fillButtonInvoked(ActionEvent event) {
         System.out.println("Button click");
+        
     }
     @FXML
     public void pencilButtonInvoked(ActionEvent event) {
@@ -94,6 +95,7 @@ public class Controller {
         brushTool.setColorPicker(colorPicker);
         
     }
+
 
     public void onSave() {
         try {

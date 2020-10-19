@@ -5,7 +5,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class BrushTool implements Command {
+public class PencilTool implements Command {
 	MouseEvent e;
 	GraphicsContext g;
 	private ColorPicker colorPicker;
@@ -25,7 +25,7 @@ public class BrushTool implements Command {
 		brushSize = size;
 	}
 
-	public BrushTool() {
+	public PencilTool() {
 
 	}
 
@@ -34,7 +34,7 @@ public class BrushTool implements Command {
 		double x = e.getX() - size / 2;
 		double y = e.getY() - size / 2;
 		g.setFill(colorPicker.getValue());
-		g.fillRect(x, y, size, size);
+		g.fillOval(x, y, 1, 1);
 	}
 
 	public void unexecute() {
