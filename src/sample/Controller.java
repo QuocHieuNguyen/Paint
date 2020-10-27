@@ -10,6 +10,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 import javax.imageio.ImageIO;
 import javafx.event.ActionEvent;
@@ -50,27 +51,51 @@ public class Controller {
 
     public void initialize() {
         GraphicsContext g = canvas.getGraphicsContext2D();
-        Brush.fire();
-        canvas.setOnMouseDragged(e -> {
-        	tool.setMouseEvent(e);
-        	tool.setGraphicsContext(g);
-        	tool.execute();
-//            double size = Double.parseDouble(brushSize.getText());
-//            double x = e.getX() - size / 2;
-//            double y = e.getY() - size / 2;
-//
-//            if (eraser.isSelected()) {
-//                g.clearRect(x, y, size, size);
-//            } else {
-//                g.setFill(colorPicker.getValue());
-//                g.fillOval(x, y, size,size);
-//                //g.fillRect(x, y, size, size);
-//            }
-        });
+        colorPicker.setValue(Color.BLACK);
+        fillButton.fire();
+//        //Brush.fire();
+//        tool = new BrushTool();
+//        BrushTool brushTool = (BrushTool)tool;
+//        brushTool.setBrushSize(brushSize);
+//        brushTool.setColorPicker(colorPicker);
+//        if(tool != null)
+//        {
+//            tool.setGraphicsContext(g);
+//            tool.setCanvas(canvas);
+//            tool.execute();       	
+//        }
+//        fillButton.fire();
+
+//        canvas.setOnMouseDragged(e -> {
+//        	tool.setMouseEvent(e);
+//        	tool.setGraphicsContext(g);
+//        	tool.execute();
+////            double size = Double.parseDouble(brushSize.getText());
+////            double x = e.getX() - size / 2;
+////            double y = e.getY() - size / 2;
+////
+////            if (eraser.isSelected()) {
+////                g.clearRect(x, y, size, size);
+////            } else {
+////                g.setFill(colorPicker.getValue());
+////                g.fillOval(x, y, size,size);
+////                //g.fillRect(x, y, size, size);
+////            }
+//        });
     }
     @FXML
     public void fillButtonInvoked(ActionEvent event) {
         System.out.println("Button click");
+        if(tool != null)
+        tool.unsubAllMouseEvent();
+        tool = new LineShape();
+        LineShape lineShapeTool = (LineShape)tool;
+        GraphicsContext g = canvas.getGraphicsContext2D();
+        tool.setGraphicsContext(g);
+        lineShapeTool.setCanvas(canvas);
+        lineShapeTool.setColorPicker(colorPicker);
+        tool.execute();
+        
         
     }
     @FXML
@@ -83,16 +108,28 @@ public class Controller {
     }
     @FXML
     public void eraserButtonInvoked(ActionEvent event) {
-        System.out.println("Button click");
-        
+    	System.out.println("Eraser Button Click");
+    	tool.unsubAllMouseEvent();
+    	 tool = new ClearTool();
+         ClearTool clearTool = (ClearTool)tool;
+         GraphicsContext g = canvas.getGraphicsContext2D();
+         clearTool.setBrushSize(brushSize);
+         clearTool.setCanvas(canvas);
+         clearTool.setGraphicsContext(g);
+         tool.execute();
     }
     @FXML
     public void brushButtonInvoked(ActionEvent event) {
     	System.out.println("Brush Button Click");
+    	tool.unsubAllMouseEvent();
         tool = new BrushTool();
         BrushTool brushTool = (BrushTool)tool;
+        GraphicsContext g = canvas.getGraphicsContext2D();
         brushTool.setBrushSize(brushSize);
         brushTool.setColorPicker(colorPicker);
+        brushTool.setCanvas(canvas);
+        brushTool.setGraphicsContext(g);
+        tool.execute();
         
     }
 
